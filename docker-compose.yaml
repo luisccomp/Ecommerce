@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: web
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+      - static:/static
+    environment:
+      - ALLOWED_HOSTS=localhost 127.0.0.1 [::]
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    volumes:
+      - static:/static
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+volumes:
+  static:
