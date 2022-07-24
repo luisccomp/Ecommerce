@@ -10,6 +10,15 @@ services:
       - static:/static
     environment:
       - ALLOWED_HOSTS=localhost 127.0.0.1 [::]
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=ecommerce
+      - DB_USER=ecommerce
+      - DB_PASSWORD=ecommerce
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DJANGO_ENV=production
+    depends_on:
+      - db
 
   nginx:
     build: ./nginx
@@ -20,6 +29,17 @@ services:
       - 80:80
     depends_on:
       - web
+    
+  db:
+    image: postgres
+    container_name: db
+    volumes:
+      - .pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=ecommerce
+      - POSTGRES_PASSWORD=ecommerce
 
 volumes:
   static:

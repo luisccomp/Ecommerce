@@ -1,0 +1,14 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Ecommerce - Register{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        Register
+    </div>
+    <div class="card-body">
+        <p>Already have an account? <a href="{% url 'users:login' %}">Sign in</a> and take the best deals.</p>
+    </div>
+</div>
+{% endblock %}

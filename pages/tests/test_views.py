@@ -13,7 +13,7 @@ def home_response(client):
     return client.get(reverse('pages:home'))
 
 
-class AboutTemplatePageView:
+class TestAboutPageView:
     
     def test_reverse_resolve(self):
         assert reverse('pages:about') == '/about/'
